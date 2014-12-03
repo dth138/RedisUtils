@@ -1,4 +1,4 @@
-package net.marsvista;
+eackage net.marsvista;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -6,7 +6,6 @@ import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.ScanResult;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,8 +17,8 @@ import java.util.Set;
 public class CLI {
 
     public static void main(String args[]) {
-        JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost", 6379, 10, "cdre1300");
-        KnownKeyCounter keyCounter = new KnownKeyCounter();
+        JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost", 6379, 10, "");
+        KeyCounter keyCounter = new KnownPrefixCounter();
 
         try  {
             Jedis jedis = pool.getResource();
@@ -31,7 +30,6 @@ public class CLI {
                 cursor = rs.getStringCursor();
                 List<String> keys = rs.getResult();
                 for (String key : keys) {
-                    //count the key
                     keyCounter.count(key);
                 }
             } while (!cursor.equals("0"));

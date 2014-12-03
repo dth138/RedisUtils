@@ -9,10 +9,10 @@ import java.util.*;
  * Time: 4:03 PM
  * To change this template use File | Settings | File Templates.
  */
-public class KnownKeyCounter {
+public class ExactKeyCounter implements KeyCounter {
     Map keys;
 
-    public KnownKeyCounter() {
+    public ExactKeyCounter() {
         keys = new TreeMap<String, Integer>();
     }
 
